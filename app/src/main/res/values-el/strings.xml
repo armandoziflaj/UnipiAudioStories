@@ -1,0 +1,8 @@
+<resources>
+<string name="app_name">Ηχητικές Ιστορίες</string>
+<string name="btn_listen">Ακρόαση</string>
+<string name="btn_stats">Στατιστικά</string>
+<string name="stats_title">Δημοφιλείς Ιστορίες</string>
+<string name="author_prefix">Συγγραφέας: %s</string>
+<string name="plays_prefix">Ακροάσεις: %d</string>
+</resources>

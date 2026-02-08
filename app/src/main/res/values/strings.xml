@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Unipi Audio Stories</string>
+    <string name="btn_listen">Listen</string>
+    <string name="btn_stats">Statistics</string>
+    <string name="stats_title">Most Popular Stories</string>
+    <string name="author_prefix">Author: %s</string>
+    <string name="plays_prefix">Plays: %d</string>
+</resources>

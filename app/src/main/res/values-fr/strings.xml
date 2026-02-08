@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Histoires Audio</string>
+    <string name="btn_listen">Écouter</string>
+    <string name="btn_stats">Statistiques</string>
+    <string name="stats_title">Histoires Populaires</string>
+    <string name="author_prefix">Auteur: %s</string>
+    <string name="plays_prefix">Lectures: %d</string>
+</resources>
