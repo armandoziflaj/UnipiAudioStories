@@ -1,6 +1,7 @@
 package com.example.unipiaudiostories;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,16 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
 
     private List<Story> storyList;
     private OnStoryClickListener listener;
+    private boolean showStats;
 
     public interface OnStoryClickListener {
         void onStoryClick(Story story);
     }
 
-    public StoryAdapter(List<Story> storyList, OnStoryClickListener listener) {
+
+    public StoryAdapter(List<Story> storyList, boolean showStats, OnStoryClickListener listener) {
         this.storyList = storyList;
+        this.showStats = showStats;
         this.listener = listener;
     }
 
@@ -38,15 +42,21 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
     @Override
     public void onBindViewHolder(@NonNull StoryViewHolder holder, int position) {
         Story story = storyList.get(position);
+        Context context = holder.itemView.getContext();
         holder.title.setText(story.getTitle());
-        holder.author.setText(story.getAuthor());
+        if (showStats) {
+            SharedPreferences prefs = context.getSharedPreferences("PlayCounts", Context.MODE_PRIVATE);
+            int localPlayCount = prefs.getInt(story.getId(), 0);
+            int finalDisplayCount = Math.max(story.getPlayCount(), localPlayCount);
 
-        if (story.getPlayCount() > 0) {
-            holder.author.setText("Plays: " + story.getPlayCount());
+            if (finalDisplayCount > 0) {
+                holder.author.setText(story.getAuthor() + " • Plays: " + finalDisplayCount);
+            } else {
+                holder.author.setText(story.getAuthor());
+            }
         } else {
             holder.author.setText(story.getAuthor());
         }
-        Context context = holder.itemView.getContext();
 
         if (story.getImageUrl() != null && story.getImageUrl().startsWith("http")) {
             Glide.with(context)

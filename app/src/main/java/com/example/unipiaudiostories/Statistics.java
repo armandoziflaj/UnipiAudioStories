@@ -35,7 +35,7 @@ public class Statistics extends BaseActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_statistics);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rvStatistics), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_stats), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -44,7 +44,7 @@ public class Statistics extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         statsList = new ArrayList<>();
         firebaseHelper = new FirebaseHelper();
-        adapter = new StoryAdapter(statsList, story -> {
+        adapter = new StoryAdapter(statsList,true, story -> {
         });
         recyclerView.setAdapter(adapter);
 

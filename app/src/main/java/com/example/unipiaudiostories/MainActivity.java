@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
         recyclerView = findViewById(R.id.storiesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new StoryAdapter(storyList, story -> {
+        adapter = new StoryAdapter(storyList,false, story -> {
             Intent intent = new Intent(MainActivity.this, StoryDetailActivity.class);
             intent.putExtra("STORY_ID", story.getId());
             intent.putExtra("TITLE", story.getTitle());
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
             Intent intent = new Intent(MainActivity.this, Statistics.class);
             startActivity(intent);
         });
-        firebaseHelper.seedDatabase();
+        //firebaseHelper.seedDatabase();
 
         loadStories();
         findViewById(R.id.btnSettings).setOnClickListener(v -> showSettingsDialog());

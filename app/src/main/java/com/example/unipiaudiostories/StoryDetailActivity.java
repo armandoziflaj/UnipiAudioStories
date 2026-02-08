@@ -62,6 +62,9 @@ public class StoryDetailActivity extends BaseActivity {
             if (content != null) {
                 tts.speak(content, TextToSpeech.QUEUE_FLUSH, null, null);
                 firebaseHelper.incrementPlayCount(storyId);
+                SharedPreferences cache = getSharedPreferences("PlayCounts", MODE_PRIVATE);
+                int currentCount = cache.getInt(storyId, 0);
+                cache.edit().putInt(storyId, currentCount + 1).apply();
             }
         });
     }
