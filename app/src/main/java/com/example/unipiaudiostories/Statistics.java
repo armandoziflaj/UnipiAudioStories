@@ -44,12 +44,13 @@ public class Statistics extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         statsList = new ArrayList<>();
         firebaseHelper = new FirebaseHelper();
-        adapter = new StoryAdapter(statsList,true, story -> {
+        adapter = new StoryAdapter(statsList, true, story -> {
         });
         recyclerView.setAdapter(adapter);
 
         loadStatistics();
     }
+
     private void loadStatistics() {
         firebaseHelper.getStoriesByPopularity(new ValueEventListener() {
             @Override
@@ -66,9 +67,11 @@ public class Statistics extends BaseActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
     }
+
     private void setAppLocaleForActivity(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);

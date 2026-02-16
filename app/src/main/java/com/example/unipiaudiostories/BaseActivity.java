@@ -21,6 +21,7 @@ public class BaseActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
     }
+
     @Override
     protected void attachBaseContext(android.content.Context newBase) {
         SharedPreferences prefs = newBase.getSharedPreferences("Settings", MODE_PRIVATE);

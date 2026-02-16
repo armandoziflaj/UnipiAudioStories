@@ -9,7 +9,6 @@ import android.widget.RadioGroup;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends BaseActivity {
 
@@ -33,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private StoryAdapter adapter;
     private List<Story> storyList;
     private FirebaseHelper firebaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +48,7 @@ public class MainActivity extends BaseActivity {
         recyclerView = findViewById(R.id.storiesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new StoryAdapter(storyList,false, story -> {
+        adapter = new StoryAdapter(storyList, false, story -> {
             Intent intent = new Intent(MainActivity.this, StoryDetailActivity.class);
             intent.putExtra("STORY_ID", story.getId());
             intent.putExtra("TITLE", story.getTitle());
@@ -91,6 +90,7 @@ public class MainActivity extends BaseActivity {
         });
 
     }
+
     private void showSettingsDialog() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View view = getLayoutInflater().inflate(R.layout.layout_settings, null);

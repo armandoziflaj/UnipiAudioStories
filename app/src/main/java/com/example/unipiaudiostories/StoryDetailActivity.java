@@ -3,14 +3,11 @@ package com.example.unipiaudiostories;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,6 +20,7 @@ public class StoryDetailActivity extends BaseActivity {
 
     private TextToSpeech tts;
     FirebaseHelper firebaseHelper = new FirebaseHelper();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +28,10 @@ public class StoryDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_story_detail);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
                 (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+                    Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                    return insets;
+                });
 
         ImageView ivDetailImage = findViewById(R.id.ivDetailImage);
         TextView tvDetailTitle = findViewById(R.id.tvDetailTitle);
@@ -68,6 +66,7 @@ public class StoryDetailActivity extends BaseActivity {
             }
         });
     }
+
     @Override
     protected void onDestroy() {
         if (tts != null) {

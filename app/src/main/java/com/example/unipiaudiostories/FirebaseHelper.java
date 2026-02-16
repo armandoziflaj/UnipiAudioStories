@@ -51,11 +51,13 @@ public class FirebaseHelper {
                     }
                 });
     }
+
     public void addStory(Story story) {
         String id = databaseReference.push().getKey();
         story.setId(id);
         databaseReference.child(Objects.requireNonNull(id)).setValue(story);
     }
+
     public void seedDatabase() {
         List<Story> stories = new ArrayList<>();
 

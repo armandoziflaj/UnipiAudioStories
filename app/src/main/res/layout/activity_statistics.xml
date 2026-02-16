@@ -10,15 +10,17 @@
 
     <TextView
         android:id="@+id/tvStatsTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/stats_title"
         android:textSize="26sp"
         android:textColor="?android:attr/textColorPrimary"
         android:fontFamily="sans-serif-medium"
         android:layout_marginTop="8dp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <View
         android:id="@+id/divider"
@@ -26,6 +28,7 @@
         android:layout_height="2dp"
         android:background="?android:attr/listDivider"
         android:layout_marginTop="8dp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintTop_toBottomOf="@id/tvStatsTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -37,6 +40,7 @@
         android:layout_marginTop="12dp"
         android:clipToPadding="false"
         android:paddingBottom="16dp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

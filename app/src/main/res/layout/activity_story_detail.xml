@@ -9,12 +9,15 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/imageCard"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="350dp"
         app:cardElevation="0dp"
         app:cardCornerRadius="32dp"
         app:shapeAppearanceOverlay="@style/BottomRoundedAppearance"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -58,6 +61,7 @@
         android:text="Story Title"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="28sp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageCard" />
@@ -69,6 +73,7 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintBottom_toTopOf="@+id/btnListen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +93,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnListen"
         style="@style/Widget.Material3.Button.Icon"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:text="@string/btn_listen"
@@ -97,6 +102,7 @@
         app:cornerRadius="20dp"
         app:icon="@android:drawable/ic_lock_silent_mode_off"
         app:iconSize="24dp"
+        app:layout_constraintWidth_max="@dimen/layout_max_width"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
