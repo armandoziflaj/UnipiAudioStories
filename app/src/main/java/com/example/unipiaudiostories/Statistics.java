@@ -22,12 +22,26 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Statistics activity displays stories sorted by popularity (play count).
+ * It shows the most popular stories in descending order, allowing users
+ * to see which stories are most listened to.
+ */
 public class Statistics extends BaseActivity {
 
+    /** Adapter for displaying stories with statistics */
     private StoryAdapter adapter;
+    /** List containing stories sorted by popularity */
     private List<Story> statsList;
+    /** Helper class for Firebase database operations */
     private FirebaseHelper firebaseHelper;
 
+    /**
+     * Called when the activity is starting. Sets up the RecyclerView
+     * and loads statistics data from Firebase.
+     *
+    
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +65,11 @@ public class Statistics extends BaseActivity {
         loadStatistics();
     }
 
+    /**
+     * Loads stories ordered by popularity from Firebase.
+     * Stories are retrieved in ascending order by playCount and then
+     * reversed to display the most popular stories first.
+     */
     private void loadStatistics() {
         firebaseHelper.getStoriesByPopularity(new ValueEventListener() {
             @Override
@@ -70,13 +89,5 @@ public class Statistics extends BaseActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-    }
-
-    private void setAppLocaleForActivity(String languageCode) {
-        Locale locale = new Locale(languageCode);
-        Locale.setDefault(locale);
-        android.content.res.Configuration config = new android.content.res.Configuration();
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }

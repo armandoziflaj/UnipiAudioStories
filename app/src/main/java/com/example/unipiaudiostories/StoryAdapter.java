@@ -16,17 +16,30 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * StoryAdapter is a RecyclerView adapter for displaying a list of stories.
+ * It supports two modes: normal mode for browsing stories and statistics mode
+ * for showing play counts alongside each story.
+ */
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHolder> {
 
-    private List<Story> storyList;
-    private OnStoryClickListener listener;
-    private boolean showStats;
+    /** List of stories to be displayed */
+    private final List<Story> storyList;
+    /** Listener for handling story item clicks */
+    private final OnStoryClickListener listener;
+    /** Flag indicating whether to show play count statistics */
+    private final boolean showStats;
 
+    /**
+     * Interface for handling story item click events.
+     */
     public interface OnStoryClickListener {
         void onStoryClick(Story story);
     }
 
-
+    /**
+     * Constructor for StoryAdapter.
+   */
     public StoryAdapter(List<Story> storyList, boolean showStats, OnStoryClickListener listener) {
         this.storyList = storyList;
         this.showStats = showStats;
@@ -87,6 +100,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryViewHol
         return storyList.size();
     }
 
+    /**
+     * ViewHolder class for caching view references of story items.
+     * Improves RecyclerView performance by avoiding repeated findViewById calls.
+     */
     public static class StoryViewHolder extends RecyclerView.ViewHolder {
         ShapeableImageView image;
         TextView title, author;

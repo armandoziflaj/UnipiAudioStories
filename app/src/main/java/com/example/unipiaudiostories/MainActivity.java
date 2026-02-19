@@ -25,13 +25,30 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * MainActivity is the main entry point of the application.
+ * It displays a list of available stories and provides access to
+ * statistics and settings. Users can tap on stories to view details.
+ */
 public class MainActivity extends BaseActivity {
 
+    /** RecyclerView for displaying the list of stories */
     private RecyclerView recyclerView;
+    /** Adapter for binding story data to the RecyclerView */
     private StoryAdapter adapter;
+    /** List containing all story objects */
     private List<Story> storyList;
+    /** Helper class for Firebase database operations */
     private FirebaseHelper firebaseHelper;
 
+    /**
+     * Called when the activity is starting. Sets up the UI components,
+     * initializes the RecyclerView, and loads stories from Firebase.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously
+     *                          being shut down, this Bundle contains the data it most
+     *                          recently supplied in onSaveInstanceState.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +87,10 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btnSettings).setOnClickListener(v -> showSettingsDialog());
     }
 
+    /**
+     * Loads all stories from Firebase Realtime Database and updates
+     * the RecyclerView adapter with the retrieved data.
+     */
     private void loadStories() {
         firebaseHelper.getAllStories(new ValueEventListener() {
             @Override
@@ -91,6 +112,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    /**
+     * Displays a bottom sheet dialog containing app settings.
+     * Users can toggle dark mode and select their preferred language.
+     * Language changes trigger an activity recreation to apply the new locale.
+     */
     private void showSettingsDialog() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View view = getLayoutInflater().inflate(R.layout.layout_settings, null);

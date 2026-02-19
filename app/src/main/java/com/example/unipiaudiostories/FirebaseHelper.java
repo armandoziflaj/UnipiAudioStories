@@ -12,21 +12,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * FirebaseHelper provides methods to interact with Firebase Realtime Database
+ * for managing story data. It handles CRUD operations, sorting by popularity,
+ * and play count tracking.
+ */
 public class FirebaseHelper {
+    /** Reference to the "stories" node in Firebase Realtime Database */
     private final DatabaseReference databaseReference;
 
+    /**
+     * Constructor that initializes the Firebase database reference
+     * to the "stories" node.
+     */
     public FirebaseHelper() {
         databaseReference = FirebaseDatabase.getInstance().getReference("stories");
     }
 
+    /**
+     * Retrieves all stories from the Firebase database.
+     *
+     * @param listener ValueEventListener to handle the data retrieval callbacks
+     */
     public void getAllStories(ValueEventListener listener) {
         databaseReference.addValueEventListener(listener);
     }
 
+    /**
+     * Retrieves stories ordered by their play count (popularity).
+     * Stories are sorted in ascending order by playCount.
+     *
+     * @param listener ValueEventListener to handle the data retrieval callbacks
+     */
     public void getStoriesByPopularity(ValueEventListener listener) {
         databaseReference.orderByChild("playCount").addValueEventListener(listener);
     }
 
+    /**
+     * Increments the play count for a specific story in Firebase.
+     * Uses a transaction to ensure thread-safe increment operation.
+     *
+     * @param storyId The unique identifier of the story to update
+     */
     public void incrementPlayCount(String storyId) {
         if (storyId == null) return;
 
@@ -52,12 +79,23 @@ public class FirebaseHelper {
                 });
     }
 
+    /**
+     * Adds a new story to the Firebase database.
+     * Generates a unique ID for the story before saving.
+     *
+     * @param story The Story object to be added to the database
+     */
     public void addStory(Story story) {
         String id = databaseReference.push().getKey();
         story.setId(id);
         databaseReference.child(Objects.requireNonNull(id)).setValue(story);
     }
 
+    /**
+     * Seeds the Firebase database with initial sample stories.
+     * This method populates the database with pre-defined stories
+     * from Aesop's fables for testing and demonstration purposes.
+     */
     public void seedDatabase() {
         List<Story> stories = new ArrayList<>();
 

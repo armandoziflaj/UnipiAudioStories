@@ -16,11 +16,23 @@ import com.bumptech.glide.Glide;
 
 import java.util.Locale;
 
+/**
+ * StoryDetailActivity displays the full details of a selected story.
+ * It shows the story's image, title, author, and content, and provides
+ * text-to-speech functionality to listen to the story. Play counts are
+ * tracked both locally and in Firebase.
+ */
 public class StoryDetailActivity extends BaseActivity {
 
+    /** Text-to-Speech engine for reading the story aloud */
     private TextToSpeech tts;
+    /** Helper class for Firebase database operations */
     FirebaseHelper firebaseHelper = new FirebaseHelper();
 
+    /**
+     * Called when the activity is starting. Sets up the UI with story details
+     * and initializes the Text-to-Speech engine.
+      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +79,10 @@ public class StoryDetailActivity extends BaseActivity {
         });
     }
 
+    /**
+     * Called before the activity is destroyed. Properly shuts down
+     * the Text-to-Speech engine to release resources.
+     */
     @Override
     protected void onDestroy() {
         if (tts != null) {
